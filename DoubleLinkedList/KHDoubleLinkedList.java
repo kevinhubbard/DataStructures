@@ -6,6 +6,7 @@
  * This class is the main class for the Double Linked List Data Structure
  * The node class is a nested inner class
  **/
+import java.util.*;
 
 public class KHDoubleLinkedList<E> {
 	/** A Node is the building block for a double-linked list. */
@@ -89,11 +90,11 @@ public class KHDoubleLinkedList<E> {
 		/** previous
 		 * Move the iterator backward and return the previous item
 		 * @return the previous item in the list
-		 * @throws NoSUchElementException if there is no such object
+		 * @throws NoSuchElementException if there is no such object
 		 **/
 		public E previous() {
 			if (!hasPrevious()) {
-				throw new SoSuchElementException();
+				throw new NoSuchElementException();
 			}
 			if (nextItem == null) { // Iterator is past last element
 				nextItem = tail;
@@ -103,6 +104,18 @@ public class KHDoubleLinkedList<E> {
 			lastItemReturned = nextItem;
 			index--;
 			return lastItemReturned.data;
+		}
+
+		public void set(E obj) {
+		}
+
+		public void remove() {
+		}
+		public int previousIndex() {
+			return 0;
+		}
+		public int nextIndex() {
+			return 0;
 		}
 
 		/** add
@@ -155,6 +168,23 @@ public class KHDoubleLinkedList<E> {
 	private Node<E> tail = null;
 	private int size = 0;
 
+	/** listIterator
+	 * Return a listIterator at the given position
+	 * @param i index to start the list iterator
+	 * @return a list iterator at specified index
+	 **/
+	public KHListIter listIterator(int i) {
+		return new KHListIter(i);
+	}
+
+	/** listIterator
+	 * return a list iterator at the head of the list
+	 * @return a list iterator at head of list
+	 **/
+	public KHListIter listIterator() {
+		return listIterator(0);
+	}
+
 	/** add
 	 * Inserts object obj into the list at position index
 	 * @param index the position
@@ -170,7 +200,7 @@ public class KHDoubleLinkedList<E> {
 	 * @param obj the obj to be inserted
 	 **/
 	public void addFirst(E obj) {
-
+		listIterator().add(obj);
 	}
 
 	/** addLast
@@ -178,7 +208,7 @@ public class KHDoubleLinkedList<E> {
 	 * @param obj the object to be added
 	 **/
 	public void addLast(E obj) {
-
+		listIterator(size).add(obj);
 	}
 
 	/** get
@@ -196,7 +226,7 @@ public class KHDoubleLinkedList<E> {
 	 * @return the first element
 	 **/
 	public E getFirst() {
-
+		return get(0);
 	}
 
 	/** getLast
@@ -205,7 +235,7 @@ public class KHDoubleLinkedList<E> {
 	 * @return the last element
 	 **/
 	public E getLast() {
-
+		return get(size - 1);
 	}
 
 	/** remove
@@ -214,7 +244,7 @@ public class KHDoubleLinkedList<E> {
 	 * @return true if the list contained object obj; otherwise return false
 	 **/
 	public boolean remove(E obj) {
-
+		return false;
 	}
 
 	/** size
